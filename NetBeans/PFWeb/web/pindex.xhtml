@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head id="hd">
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="default.css" library="css" />
+    </h:head>
+    <h:body>
+        <p:panel style="width: 350px;" header="Registatrion"  toggleable="true" closable="true" toggleSpeed="500" closeSpeed="2000" widgetVar="panel">
+        <h:form>
+            <h:panelGrid columns="2">  
+                <h:outputLabel for="stateDD" value="Select State : "/>
+                <p:selectOneMenu id="stateDD" value="#{ajaxBean.state}" valueChangeListener="#{ajaxBean.stateChangeEvent}">
+                    <f:selectItems value="#{ajaxBean.states}" var="state" itemLabel="#{state}" itemValue="#{state}" />
+                    <f:ajax event="change" execute="stateDD"  render="distDD othetState"  />
+                </p:selectOneMenu> 
+                <h:outputLabel for="othetState" value="Enter State : "/>
+                <p:inputText id="othetState" value="#{ajaxBean.otherDist}" disabled="#{ajaxBean.state != 'OTHER'}" />
+                <h:outputLabel for="distDD" value="Select Dist : "/>
+                <p:selectOneMenu id="distDD" disabled="#{ajaxBean.state == 'OTHER'}" value="#{ajaxBean.dist}" valueChangeListener="#{ajaxBean.distChangeEvent}" >
+                    <f:selectItems value="#{ajaxBean.dists}" var="dist" itemLabel="#{dist}" itemValue="#{dist}" />
+                    <f:ajax event="change" render="population" execute="@this"/>
+                </p:selectOneMenu> 
+               
+                <h:outputText value="#{ajaxBean.city}" id="population"/>
+                <p:commandButton value="Register"/>
+            </h:panelGrid>
+        </h:form>
+        </p:panel>   
+    </h:body>
+</html>
+
