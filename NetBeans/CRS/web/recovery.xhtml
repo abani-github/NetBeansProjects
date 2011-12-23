@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Recover your Password</title>
+        <h:outputStylesheet name="default.css" library="css" />
+        <h:outputStylesheet name="jquery.qtip.css" library="css" />
+        <h:outputScript target="head" name="jquery-1.7.min.js" library="js" />
+        <h:outputScript target="head" name="jquery.qtip.js" library="js" />
+        <h:outputScript target="head" name="utils.js" library="js" />
+    </h:head>
+    <h:body>
+        <h:form id="recForm">
+            <p:wizard flowListener="#{recoveryBean.onFlowProcess}" 
+                      id="wiz" widgetVar="wiz" 
+                      style="width: 450px;padding-left: 100px;padding-top: 15px">
+                <p:tab title="Personal" id="personal">
+                    <p:panel header="Personal Details">
+                        <p:focus />
+                        <h:panelGrid columns="3">
+                            <h:outputLabel for="userid" value="Enter User ID * : "/>
+                            <p:inputText required="true" id="userid" value="#{recoveryBean.userId}"/>
+                            <h:messages />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="mobile" title="Mobile">
+                    <p:panel header="Mobile Number Validation">
+                       
+                        <h:outputLabel for="mobilen" value="Enter Mobile Number * : "/>
+                        <p:inputText required="true" id="mobilen" value="#{recoveryBean.mobile}"/>
+                        <h:messages />
+                    </p:panel>
+                </p:tab>
+                <p:tab id="secqsn" title="Secret Question">
+                    <p:panel header="validate your Secret Question">
+                        
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="secqn" value="Your secret question "/>
+                            <h:outputText id="secqn" value="#{recoveryBean.user.scrqsn}"/>
+                            <h:outputLabel for="secans" value="Your secret answer "/>
+                            <h:inputText id="secans" value="#{recoveryBean.secans}"/>
+                            <h:messages />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="reset" title="Reset">
+                    <p:panel header="Reset Your Password">
+                       
+                        <h:panelGrid columns="2" id="resetPG">
+                            <h:outputLabel rendered="#{!recoveryBean.passwordChanged}" for="pwd1" value="Enter New Password : "/>
+                            <h:inputSecret rendered="#{!recoveryBean.passwordChanged}" id="pwd1" value="#{recoveryBean.user.password}"/>
+                            <h:outputLabel rendered="#{!recoveryBean.passwordChanged}" for="pwd2" value="Re-Enter New Password : "/>
+                            <h:inputSecret rendered="#{!recoveryBean.passwordChanged}" id="pwd2" value="#{recoveryBean.newpass}" />
+                            <p:commandButton rendered="#{!recoveryBean.passwordChanged}" update="resetPG" value="Change" actionListener="#{recoveryBean.changePassword()}" />
+                            <h:outputText value="Your Password changed successfully Please login" rendered="#{recoveryBean.passwordChanged}" />
+                            <h:link outcome="login" rendered="#{recoveryBean.passwordChanged}">login</h:link>
+                            <h:messages />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
+

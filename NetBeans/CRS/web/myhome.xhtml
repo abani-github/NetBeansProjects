@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>My Home Page</title>
+        <h:outputStylesheet name="default.css" library="css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="hi #{loginBean.principal} Wel Come to your page" />  
+            <h:commandLink value="logout" action="#{loginBean.logout()}" /> <br/>
+            <p:panel id="panel" header="Your Details" style="margin-bottom:10px; width: 300px">    
+                <p:messages/>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="First Name" /> 
+                    <h:inputText value="#{userDetailsBean.users.firstname}" />
+                    <h:outputLabel value="Last Name" /> 
+                    <h:inputText value="#{userDetailsBean.users.lastname}" />
+                    <h:outputLabel value="E@Mail" /> 
+                    <h:inputText value="#{userDetailsBean.users.email}" />
+                    <h:outputLabel value="Phone" /> 
+                    <h:inputText value="#{userDetailsBean.users.mobile}" />
+                </h:panelGrid>
+            </p:panel> 
+            <p:commandButton  value="Update" ajax="false" action="#{userDetailsBean.change()}"/>
+        </h:form>
+    </h:body>
+</html>
+

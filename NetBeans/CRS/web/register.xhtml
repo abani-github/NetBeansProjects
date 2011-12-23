@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="default.css" library="css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panel id="panel" header="Registration details" style="margin-bottom:10px; width: 500px">    
+                <p:messages/>
+                <h:panelGrid columns="2" >
+                    <h:outputLabel for="username" value="Username: " /> 
+                    <p:inputText id="username" value="#{regBean.users.userid}"/>
+                    <h:outputLabel for="password"  value="Password: "/> 
+                    <p:password id="password" value="#{regBean.users.password}" feedback="false" minLength="1"/>
+                    <h:outputLabel for="fname" value="First Name: "/> 
+                    <p:inputText id="fname" value="#{regBean.users.firstname}"/>
+                    <h:outputLabel for="lname" value="Last Name: "/> 
+                    <p:inputText id="lname" value="#{regBean.users.lastname}"/>
+                    <h:outputLabel for="email" value="E-Mail: "/> 
+                    <p:inputText id="email" value="#{regBean.users.email}"/>
+                    <h:outputLabel for="mobile" value="Mobile: "/> 
+                    <p:inputText id="mobile" value="#{regBean.users.mobile}"/>
+                    <h:outputLabel for="scqn" value="Secret Quesion: "/> 
+                    <p:selectOneMenu id="scqn" value="#{regBean.users.scrqsn}">
+                        <f:selectItems value="#{regBean.secQsns}" />
+                    </p:selectOneMenu>
+                   
+                    <h:outputLabel for="scan" value="Secret Answer: "/> 
+                    <p:inputText id="scan" value="#{regBean.users.scrans}"/>
+                    <p:commandButton value="Register" action="#{regBean.register()}" ajax="false"/>   
+
+                </h:panelGrid>
+            </p:panel>    
+        </h:form>
+    </h:body>
+</html>
+

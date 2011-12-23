@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Recover your Password</title>
+        <h:outputStylesheet name="default.css" library="css" />
+    </h:head>
+    <h:body>
+        <h:form id="frm">
+            <p:wizard flowListener="#{vScopedBean.onFlowProcess}" id="wiz" widgetVar="wiz" style="width: 450px;padding-left: 100px;padding-top: 15px">
+                <p:tab title="Personal" id="personal">
+                    <p:panel header="Personal Details">
+                        <h:panelGrid columns="3">
+                            <h:outputLabel for="userid" value="Enter User ID * : "/>
+                            <p:inputText required="true" id="userid" value="#{vScopedBean.userId}"/>
+                            <h:messages />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="mobile" title="Mobile">
+                    <p:panel header="Mobile Number Validation">
+                        <h:outputLabel for="mobilen" value="Enter Mobile Number * : "/>
+                        <p:inputText required="true" id="mobilen" value="#{vScopedBean.mobile}"/>
+                        <h:messages />
+                    </p:panel>
+                </p:tab>
+                <p:tab id="secqsn" title="Secret Question">
+                    <p:panel header="validate your Secret Question">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="secqn" value="Your secret question "/>
+                            <h:outputText id="secqn" value="Your Middle Name"/>
+                            <h:outputLabel for="secans" value="Your secret answer "/>
+                            <h:inputText id="secans" value="#{vScopedBean.secans}"/>
+                            <h:messages />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                <p:tab id="reset" title="Reset">
+                    <p:panel header="validate your Secret Question">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="secqns" value="Your secret question "/>
+                            <h:outputText id="secqns" value="Your Middle Name"/>
+                           
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
+
